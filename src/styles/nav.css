@@ -1,0 +1,35 @@
+.navWrapper * {
+    /*border: solid blue 1px;*/
+}
+
+.navWrapper{
+    display: flex;
+    background: firebrick;
+    /*background: darkgoldenrod;*/
+    /*background: rgba(50,0,0,0.9);*/
+    /*border-bottom: 2px goldenrod solid;*/
+    width: 100vw;
+    overflow: scroll;
+}
+
+.navWrapper div *{
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.navLeft{
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.navRight{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+div.navRight:first-child{
+    margin-right: 10px;
+}
