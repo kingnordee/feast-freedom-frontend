@@ -24,3 +24,12 @@ INDIVIDUAL KITCHEN STYLE
     margin: 10px 20px;
     box-shadow: 0 0 5px goldenrod;
 }
+
+.kitchenWrapper img{
+    width: 300px;
+    height: 300px;
+}
+
+.kitchenWrapper p{
+    margin:1px;
+}

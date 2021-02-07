@@ -1,38 +1,36 @@
 import { useState, useEffect } from "react"
-// import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import axios from "axios";
 import { API } from "../../Constants";
 import "../../styles/forms.css"
 import {NavLink} from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import {KITCHENFORM} from "../../reducers/KitchenFormReducer";
+import {KITCHEN_FORM, MENU_ITEM_FORM, SET_CURRENT, WORKING_DAYS_FORM} from "../../reducers/RootReducer";
 
-const KitchenRegistration = () => {
-    const [ state, setState ] = useState({
-        name:"", email:"", password:"", image:"", added:false
-    })
+const KitchenRegistration = ({ buttons }) => {
 
     const history = useHistory()
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const ph = useSelector(cur => cur.AllReducers.kitchenData)
 
-    useEffect(() => {
+    const [ state, setState ] = useState({
+        name:"",
+        email:"",
+        password:"",
+        image:""
+    })
 
-    }, [])
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        // dispatch({ type: KITCHENFORM, payload: state })
+        // dispatch({ type: KITCHEN_FORM, payload: state })
 
-        axios.post(`${API}/kitchen_registration`,{
-            name: state.name, email: state.email, password: state.password, image: state.image
-        }).then( response => {
-            setState({...state, added: true})
-            // dispatch({type: SHOW_ADD, payload: false})
+        try{
+            const response = await axios.post(`${API}/kitchen_registration`, state)
+            localStorage.setItem("kitchen", JSON.stringify(response.data))
             history.push("/add_workingdays")
-        }).catch(error => {
-            console.log(`Error from addKitchen axios call: ${error}`);
-        })
-
+        }catch (e) {
+            console.log(`Error from addKitchen axios call: ${e}`);
+        }
     }
 
     return(
@@ -60,18 +58,14 @@ const KitchenRegistration = () => {
                            setState({...state, password: e.target.value})}
                 />
 
-                <label htmlFor="image">Image</label>
+                <label htmlFor="image">Image Url</label>
                 <input type="text" id="image"
                        value={state.image}
                        onChange={(e) =>
                            setState({...state, image: e.target.value})}
                 />
-
-                {/*<NavLink to="/">*/}
                 <button type="submit" value="Submit">Next</button>
-                {/*</NavLink>*/}
             </form>
-            {/*<button onClick={(event => history.push("/add_workingdays"))}>Go to WDYs</button>*/}
         </div>
     )
 }

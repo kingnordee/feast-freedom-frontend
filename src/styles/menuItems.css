@@ -1,0 +1,20 @@
+.menuItemsWrapper * {
+    border: 2px solid green;
+}
+.menuItemsWrapper{
+    display: flex;
+}
+
+.itemWrapper{
+    display: flex;
+    margin: 10px;
+}
+
+.itemWrapper img {
+    height: 200px;
+    width: 200px;
+}
+
+.itemWrapper * {
+    /*text-align: center;*/
+}

@@ -24,7 +24,7 @@ const UserRegistration = () => {
                 <input type="password" id="password"/>
                 <label htmlFor="image">Image</label>
                 <input type="text" id="image"/>
-                <input type="submit" value="Submit"/>
+                <button type="submit" value="Submit">Submit</button>
             </form>
         </div>
     )

@@ -1,4 +1,8 @@
 .App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     overflow: scroll;
     color: azure;
@@ -20,7 +24,7 @@ button{
 
 button:focus{
     outline: none;
-    border: green 2px solid;
-    background: none;
+    /*border: green 2px solid;*/
+    /*background: none;*/
 }
 
