@@ -2,10 +2,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios";
 import { API } from "../../Constants";
-import "../../styles/forms.css"
-import {NavLink} from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import {KITCHEN_FORM, MENU_ITEM_FORM, SET_CURRENT, WORKING_DAYS_FORM} from "../../reducers/RootReducer";
 
 const KitchenRegistration = ({ buttons }) => {
 
@@ -58,7 +55,7 @@ const KitchenRegistration = ({ buttons }) => {
                            setState({...state, password: e.target.value})}
                 />
 
-                <label htmlFor="image">Image Url</label>
+                <label htmlFor="image">Image URL</label>
                 <input type="text" id="image"
                        value={state.image}
                        onChange={(e) =>

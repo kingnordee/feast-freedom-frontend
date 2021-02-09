@@ -1,4 +1,3 @@
-import "../../styles/home.css"
 import { useHistory} from "react-router-dom";
 
 const Kitchen = ({ kitchen }) => {
@@ -12,12 +11,12 @@ const Kitchen = ({ kitchen }) => {
     }
 
     return(
-        <div className="kitchenWrapper">{/*STYLE IN HOME.CSS*/}
-            <h3>{kitchen.name}</h3>
+        <div className="kitchenWrapper">{/*STYLE IN KITCHEN.CSS*/}
+            <h2>{kitchen.name}</h2>
             <img src={kitchen.image} alt="Kitchen image"/>
             {kitchen.working_days.length > 0 &&
                 kitchen.working_days.map(day => {
-                    return <p key={day.id}>{`${day.day}: ${day.from} to ${day.to}`}</p>
+                    return <p key={day.id}>{`${day.day}: ${day.from} – ${day.to}`}</p>
                 })
             }
             <button onClick={handleClick}>View Menu</button>

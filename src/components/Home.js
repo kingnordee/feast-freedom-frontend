@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import axios from "axios";
 import { API } from "../Constants";
 import Kitchen from "./KitchenDir/Kitchen";
-import "../styles/home.css"
+import "../styles/kitchen.css"
 
 const Home = () => {
+
+    const myRef = useRef(null)
 
     const [ state, setState ] = useState({
         data:[], loaded:false, error:false
@@ -29,7 +31,7 @@ const Home = () => {
                         return <Kitchen key={kit.id} kitchen={kit}/>
                     })
                 }
-                {state.data.length < 1 && <p>Sorry there are no Kitchens available</p>}
+                { state.data.length < 1 && <p>Sorry there are no Kitchens available</p> }
             </div>
         )
     }

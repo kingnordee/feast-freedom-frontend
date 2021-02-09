@@ -1,19 +1,24 @@
-import "../../styles/menuItems.css"
 
 const MenuItem = ({ item }) => {
 
     const addToOrder = (e) => {
-        console.log("Added to order")
+        e.preventDefault()
+        if(!localStorage.getItem("order"))
+            localStorage.setItem("order", JSON.stringify([]))
+
+        let currentOrder = JSON.parse(localStorage.getItem("order"))
+        currentOrder = [...currentOrder, item]
+        localStorage.setItem('order', JSON.stringify(currentOrder))
     }
 
     return(
         <div className="itemWrapper">
             <img src={item.image} alt="Menu item image"/>
-            <div>
+            <div className="itemInner">
                 <p>{item.name}</p>
                 <p>Vegetarian: { item.veg ? "Yes" : "No" }</p>
                 <p>Price: ${item.price}</p>
-                <button onClick={addToOrder}>Add to order</button>
+                <button onClick={addToOrder}>+ Add to Cart +</button>
             </div>
         </div>
     )

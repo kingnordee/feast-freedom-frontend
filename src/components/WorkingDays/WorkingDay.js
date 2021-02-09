@@ -2,7 +2,6 @@ import axios from "axios";
 import {API} from "../../Constants";
 import { useState, useEffect } from "react"
 import {useHistory} from "react-router-dom";
-import "../../styles/forms.css"
 
 const WorkingDay = ({ day }) => {
 

@@ -1,0 +1,58 @@
+.workingDaysForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 94vh;
+    background: rgba(0,0,0,0.9);
+}
+
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
+}
+
+h3{
+    width: 100px;
+}
+
+.workingDaysForm * {
+    /*border: solid green 2px;*/
+}
+
+.workingDaysInner{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.workingDaysInner:first-child{
+    height: 100%;
+}
+
+.workingDaysInner > div {
+    margin: 0 20px;
+}
+
+.workingDaysInner div > input {
+    margin: 0 10px;
+}
+
+.fromTo{
+
+}
+
+.next button{
+    color: azure;
+    background: rgb(255,86,56);
+    border-radius: 2px;
+    margin: 1px;
+    padding: 5px 20px;
+}
+.focus{
+    border: 2px azure solid;
+    font-weight: bolder;
+}
+.fromTo input{
+    width: 50px;
+}
+

@@ -1,20 +1,174 @@
-.menuItemsWrapper * {
-    border: 2px solid green;
-}
+/*HOLDS THE LEFT AND RIGHT*/
 .menuItemsWrapper{
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 5% 20px 5px;
+    width: 100%;
+    height: 95vh;
+    overflow: hidden;
 }
 
-.itemWrapper{
+.menuItemsWrapper *{
+    /*border: solid red 2px;*/
+}
+
+.menuItemForm{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 50px;
+}
+
+.menuItemForm form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    margin: 20px;
+}
+
+.menuItemForm input, .menuItemForm select{
+    height: 2rem;
+    margin: 5px 5px 20px 5px;
+    width: 100%;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+.menuItemForm button{
+    color: azure;
+    background: rgb(255,86,56);
+    border-radius: 2px;
+    margin: 1px;
+    padding: 10px 30px;
+}
+
+.menuItemForm .finish {
+    color: rgb(255,86,56);
+}
+
+/*=========================================
+GETMENUITEMS.JS
+===========================================*/
+.menuItemsWrapper2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    width: 70%;
+    height: 100%;
+    overflow: scroll;
+}
+
+.sideMenuItems{
+    width: 70%;
+}
+
+.menuItemsInner{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.item {
     margin: 10px;
 }
 
-.itemWrapper img {
-    height: 200px;
+/*=======================================================
+FOR MENUITEM.JS
+=========================================================*/
+
+.itemWrapper img{
+    object-fit: cover;
     width: 200px;
+    height: 200px;
+    border-radius: 5px;
 }
 
-.itemWrapper * {
-    /*text-align: center;*/
+.itemInner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemInner button{
+    color: azure;
+    background: rgb(255,86,56);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+.itemInner button:active{
+    background: none;
+    color: rgb(255,86,56);
+    font-weight: bolder;
+}
+
+/*=======================================================
+FOR MENUITEM.JS ==== SIDE ORDERS
+=========================================================*/
+.sideOrders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    overflow: scroll;
+    width: 25%;
+    background: rgba(255,86,56, 0.1);
+    padding: 30px 20px;
+    border-radius: 5px;
+}
+
+.sideOrders > hr {
+    width: 100%;
+    margin: 1px 0 10px 0;
+}
+
+.OrderItemWrapper{
+    border-bottom: lightslategray solid 1px;
+}
+
+.OrderItemWrapper > p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.OrderItemWrapper > p * {
+    margin: 5px;
+}
+
+.OrderItemWrapper > p span:nth-of-type(2) {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    margin: 5px;
+    color: azure;
+    padding: 0 4px;
+    background: rgb(255,86,56);
+}
+
+.sideOrders > button {
+    color: rgb(255,86,56);
+    background: azure;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px 20px;
+    font-weight: bolder;
+}
+
+.sideOrders > button:active {
+    background: rgb(255,86,56);
+    color: azure;
 }

@@ -4,10 +4,8 @@
 
 .navWrapper{
     display: flex;
-    background: firebrick;
-    /*background: darkgoldenrod;*/
-    /*background: rgba(50,0,0,0.9);*/
-    /*border-bottom: 2px goldenrod solid;*/
+    background: rgb(255,86,56);
+
     width: 100vw;
     overflow: scroll;
 }
