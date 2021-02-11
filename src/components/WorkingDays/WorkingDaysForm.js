@@ -1,70 +1,80 @@
+import {API, DAYS} from "../../Constants";
+import {useState, useEffect} from "react"
+import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
-import {API} from "../../Constants";
-import { useState, useEffect } from "react"
-import {useHistory} from "react-router-dom";
+import "../../styles/workingDays.css"
 
 const WorkingDaysForm = () => {
-    const [ state, setState ] = useState({
-        name:"", email:"", password:"", image:"", added:false
-    })
-
     const history = useHistory()
 
-    useEffect(() => {
+    const [ state, setState ] = useState({
+        "Monday": {_from: "", _to: ""},
+        "Tuesday": {_from: "", _to: ""},
+        "Wednesday": {_from: "", _to: ""},
+        "Thursday": {_from: "", _to: ""},
+        "Friday": {_from: "", _to: ""},
+        "Saturday": {_from: "", _to: ""},
+        "Sunday": {_from: "", _to: ""}
+    })
 
+    const _send = []
+
+    const days = DAYS
+
+    useEffect(() => {
+        if(!localStorage.getItem("kitchen")) alert("You have to log in to your kitchen first!")
+        history.push("/")
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleNext = async (e) => {
         e.preventDefault()
+        console.log(state)
 
-        axios.post(`${API}/kitchen_registration`,{
-            name: state.name, email: state.email, password: state.password, image: state.image
-        }).then( response => {
-            setState({...state, added: true})
-            // dispatch({type: SHOW_ADD, payload: false})
-            history.push("/add_workingdays")
-        }).catch(error => {
-            console.log(`Error from addKitchen axios call: ${error}`);
-        })
+        for(const [k,v] of Object.entries(state)){
+            _send.push({_day: k, ...v})
+        }
+        
+        try{
+            const kitchenId = JSON.parse(localStorage.getItem("kitchen")).id
+            await axios.post(`${API}/add_days/${kitchenId}`, _send)
+        }catch (e) {
+            console.log(`${e}`)
+        }
+
+        history.push("/add_menu_item")
     }
 
     return(
-        <div className="formWrapper">
-            <h2>Kitchen Registration Form</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name"
-                       value={state.name}
-                       onChange={(e) =>
-                           setState({...state, name: e.target.value})}
-                />
-
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email"
-                       value={state.email}
-                       onChange={(e) =>
-                           setState({...state, email: e.target.value})}
-                />
-
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password"
-                       value={state.password}
-                       onChange={(e) =>
-                           setState({...state, password: e.target.value})}
-                />
-
-                <label htmlFor="image">Image</label>
-                <input type="text" id="image"
-                       value={state.image}
-                       onChange={(e) =>
-                           setState({...state, image: e.target.value})}
-                />
-
-                {/*<NavLink to="/">*/}
-                <button type="submit" value="Submit">Next</button>
-                {/*</NavLink>*/}
-            </form>
-            {/*<button onClick={(event => history.push("/add_workingdays"))}>Go to WDYs</button>*/}
+        <div className="workingDaysForm">
+            <h2>Working Days Form</h2>
+            {days.map((day, idx) => {
+                return <div key={idx} className="workingDaysInner">
+                    <h3>{day}</h3>
+                    <div className="_from fromTo">
+                        <label htmlFor="day">From</label>
+                        <input type="text" id="day"
+                               value={state[day]._from}
+                               onChange={e => setState({
+                                   ...state, [day]: {...state[day], _from: e.target.value }
+                               })}
+                        />
+                    </div>
+                    <div className="_to fromTo">
+                        <label htmlFor="day">To</label>
+                        <input type="text" id="day"
+                               value={state[day]._to}
+                               onChange={e => setState({
+                                   ...state, [day]: {...state[day], _to: e.target.value }
+                               })}
+                        />
+                    </div>
+                </div>
+            })}
+            <div className="next">
+                <button onClick={handleNext}>Next</button>
+            </div>
+            <br/>
+            <NavLink className="finish" to="/">Finish</NavLink>
         </div>
     )
 }

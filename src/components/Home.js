@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { API } from "../Constants";
-import Kitchen from "./Kitchen/Kitchen";
-import "../styles/home.css"
+import Kitchen from "./KitchenDir/Kitchen";
+import "../styles/kitchen.css"
 
 const Home = () => {
 
@@ -13,11 +13,9 @@ const Home = () => {
     useEffect(() => {
         axios.get(`${API}/`).then(res => {
             setState({ ...state, data: res.data, loaded: true })
-            console.log(res.data);
         }).catch(error => {
             console.log(`Axios fetch: ${error}`)
             setState({ ...state, error: true})
-            console.log(state.data)
         })
     }, [])
 
@@ -26,11 +24,12 @@ const Home = () => {
     else {
         return(
             <div className="homeWrapper">
-                {
+                { state.data.length > 0 &&
                     state.data.map(kit => {
                         return <Kitchen key={kit.id} kitchen={kit}/>
                     })
                 }
+                { state.data.length < 1 && <p>Sorry there are no Kitchens available</p> }
             </div>
         )
     }

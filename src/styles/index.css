@@ -1,5 +1,12 @@
 *{
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root{
+  --nav_height: 7vh;
+  --body_height: 91vh;
 }
 
 body {
