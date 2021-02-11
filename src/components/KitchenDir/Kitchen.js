@@ -6,6 +6,16 @@ const Kitchen = ({ kitchen }) => {
 
     const handleClick = (e) => {
         e.preventDefault()
+        const savedKitchen = JSON.parse(localStorage.getItem('kitchen')) ?
+            JSON.parse(localStorage.getItem('kitchen')) : null
+
+        if(savedKitchen && savedKitchen.id !== kitchen.id){
+            const myMsg = "Switching kitchens will clear your cart, " +
+                "are you sure you want to continue?"
+            if(!window.confirm(myMsg)) return
+            else localStorage.removeItem("order")
+        }
+
         localStorage.setItem("kitchen", JSON.stringify(kitchen))
         history.push("/get_menu_items")
     }

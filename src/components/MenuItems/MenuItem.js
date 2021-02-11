@@ -1,5 +1,9 @@
+import { useDispatch } from "react-redux";
+import {SET_ORDER} from "../../reducers/RootReducer";
 
 const MenuItem = ({ item }) => {
+
+    const dispatch = useDispatch()
 
     const addToOrder = (e) => {
         e.preventDefault()
@@ -9,6 +13,7 @@ const MenuItem = ({ item }) => {
         let currentOrder = JSON.parse(localStorage.getItem("order"))
         currentOrder = [...currentOrder, item]
         localStorage.setItem('order', JSON.stringify(currentOrder))
+        dispatch({ type: SET_ORDER, payload: currentOrder })
     }
 
     return(
@@ -17,7 +22,7 @@ const MenuItem = ({ item }) => {
             <div className="itemInner">
                 <p>{item.name}</p>
                 <p>Vegetarian: { item.veg ? "Yes" : "No" }</p>
-                <p>Price: ${item.price}</p>
+                <p>Price: ${item.price.toFixed(2)}</p>
                 <button onClick={addToOrder}>+ Add to Cart +</button>
             </div>
         </div>

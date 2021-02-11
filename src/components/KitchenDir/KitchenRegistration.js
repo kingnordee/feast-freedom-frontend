@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
+// import { useDispatch, useSelector } from "react-redux"
 import axios from "axios";
 import { API } from "../../Constants";
 import { useHistory } from "react-router-dom";
@@ -7,8 +7,7 @@ import { useHistory } from "react-router-dom";
 const KitchenRegistration = ({ buttons }) => {
 
     const history = useHistory()
-    const dispatch = useDispatch()
-    const ph = useSelector(cur => cur.AllReducers.kitchenData)
+    // const dispatch = useDispatch()
 
     const [ state, setState ] = useState({
         name:"",
@@ -19,7 +18,6 @@ const KitchenRegistration = ({ buttons }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // dispatch({ type: KITCHEN_FORM, payload: state })
 
         try{
             const response = await axios.post(`${API}/kitchen_registration`, state)

@@ -1,26 +1,33 @@
 import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux";
 import MenuItem from "./MenuItem";
 import "../../styles/menuItems.css"
 import OrderItem from "../Order/OrderItem";
 import axios from "axios";
 import {API} from "../../Constants";
 
-const GetMenuItems = (ref) => {
+const GetMenuItems = () => {
     const [ state, setState ] = useState({
         menuItems: []
     })
 
     const [total, setTotal] = useState(0)
     const [ordered, setOrdered] = useState(false)
-
-
+    const [orderError, setOrderError] = useState(false)
     const [showOrders, setShowOrders] = useState(false)
-    const [reload, setReload] = useState(false)
+
+
+    // const dispatch = useDispatch()
+    const isOrder = useSelector(state => state.orderReducer.order)
+    const isUser = useSelector(state => state.userReducer.user)
 
     useEffect(() => {
         let kitchen = JSON.parse(localStorage.getItem("kitchen"));
         setState({ ...state, menuItems: kitchen.menuItems })
-        setShowOrders(localStorage.getItem("order"))
+
+        setShowOrders(localStorage.getItem("order") &&
+            JSON.parse(localStorage.getItem("order")).length > 0
+        )
 
         let items;
         if(localStorage.getItem("order")){
@@ -32,35 +39,42 @@ const GetMenuItems = (ref) => {
             setTotal(tot.reduce((a,b) => a + b, 0))
         }
 
-        window.addEventListener("click", (e) => setReload(!reload));
-        return () => {
-            window.removeEventListener("click", (e) => setReload(!reload));
-        }
+    }, [isOrder, isUser])
 
-    }, [reload])
+    useEffect(() => {
+        setShowOrders(localStorage.getItem("order") &&
+            JSON.parse(localStorage.getItem("order")).length > 0
+        )
+    }, [])
 
     const handlePlaceOrder = async (e) => {
-        setOrdered(true)
-
-        const order = JSON.parse(localStorage.getItem("order"))
-        const kitchenId = JSON.parse(localStorage.getItem("kitchen"))
-        const userId = 1
-
-        let menuItemsIds = ""
-        for(let item of order){
-            if(!menuItemsIds.trim()) menuItemsIds.concat(item.id)
-            else menuItemsIds.concat(`,${item.id}`)
-        }
-
+        e.preventDefault()
         try{
+            const order = JSON.parse(localStorage.getItem("order"))
+            const kitchenId = JSON.parse(localStorage.getItem("kitchen")).id
+            let user = JSON.parse(localStorage.getItem("user"))
+            const userId = user.id
+
+            let menuItemsIds = []
+            for(let item of order){
+                menuItemsIds.push(item.id)
+            }
+
+            menuItemsIds = menuItemsIds.toString()
+
             await axios.post(`${API}/place_order`, {
                 kitchenId, userId, menuItemsIds
             })
-            // localStorage.removeItem("order");
-        }catch (e) {
-            console.log(`${e}`)
-        }
 
+            setOrdered(true)
+
+            localStorage.removeItem("order");
+            setShowOrders(false)
+
+        }catch (error) {
+            setOrderError(true)
+            console.log(`${error}`)
+        }
     }
 
     return(
@@ -79,20 +93,26 @@ const GetMenuItems = (ref) => {
                 </div>
             </div>
 
+            {/*SIDE ORDER SIDE ORDER SIDE ORDER*/}
+
             { showOrders &&
                 <div className="sideOrders">
                     <h3> Cart </h3>
                     <hr/>
-                    { JSON.parse(localStorage.getItem("order")).map(item => {
-                            return <OrderItem item={item}/>
-                        })
-                    }
+                    <div>
+                        { JSON.parse(localStorage.getItem("order")).map((item, idx) => {
+                                return <OrderItem key={idx} item={item}/>
+                            })
+                        }
+                    </div>
                     <hr/>
                     <p>Total = ${total.toFixed(2)}</p>
-                    { ordered && <p>Your order has been placed successfully. Thank you!</p>}
-                    <button onClick={handlePlaceOrder}>
-                        Place Order
-                    </button>
+                    <br/>
+                    { ordered && <p className="orderSuccess">Your order has been placed successfully. Thank you!</p> }
+                    { orderError && <p className="orderError">Sorry your order could NOT be processed, please try again!</p> }
+                    <br/>
+                    { isUser && <button onClick={handlePlaceOrder}> Place Order </button> }
+                    { !isUser && <button onClick={handlePlaceOrder}> Login/Signup to place order </button> }
                 </div>
             }
         </div>

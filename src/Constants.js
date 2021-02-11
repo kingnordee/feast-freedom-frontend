@@ -14,8 +14,6 @@ export const DAYSO = {
     'Tuesday':null,'Wednesday':null,
     'Thursday':null,'Friday':null,'Saturday':null
 }
-// for(let day of DAYS) {
-//     DAYSO.day = null;
-// }
-//
-// console.log(DAYSO)
+
+export const NAV_HEIGHT = "10vh"
+export const BODY_HEIGHT = "91vh"

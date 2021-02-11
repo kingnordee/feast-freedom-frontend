@@ -1,35 +1,33 @@
 import { combineReducers } from "redux";
-import {DAYSO} from "../Constants";
-export const KITCHEN_FORM = "kitchenForm"
-export const WORKING_DAYS_FORM = "workingDaysForm"
-export const MENU_ITEM_FORM = "menuItemForm"
-export const SET_CURRENT = "current"
+export const SET_USER = 'SET_USER'
+export const SET_ORDER = 'SET_ORDER'
 
 
-const initialState = {
-    kitchenData: null, workingDaysData: DAYSO,
-    menuItemData: null,
-    current: KITCHEN_FORM
+
+const userState = {
+    user: localStorage.getItem("user") ?
+        JSON.parse(localStorage.getItem("user")) : null
 }
 
-export const AllReducers = (state = initialState, action) => {
-    switch(action.type){
-        case KITCHEN_FORM:
-            return { ...state, kitchenData: action.payload}
-        case WORKING_DAYS_FORM:
-            return { ...state, workingDaysData: {...state.workingDaysData,
-                    [action.payload._day]: action.payload.val }
-            }
-        case MENU_ITEM_FORM:
-            return { ...state, menuItemData:  action.payload}
-        case SET_CURRENT:
-            return { ...state, current: action.payload }
-        default:
-            return state
+const userReducer = (state = userState, action) => {
+    switch (action.type) {
+        case SET_USER: return { user: action.payload }
+        default: return state
     }
 }
 
+const orderState = {
+    order: localStorage.getItem("order") ?
+        JSON.parse(localStorage.getItem("order")) : null
+}
+
+const orderReducer = (state = orderState, action) => {
+    switch (action.type) {
+        case SET_ORDER: return { order: action.payload }
+        default: return state
+    }
+}
 
 export const RootReducer = combineReducers({
-    AllReducers
+    userReducer, orderReducer
 })

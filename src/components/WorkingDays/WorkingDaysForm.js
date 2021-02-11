@@ -1,6 +1,6 @@
 import {API, DAYS} from "../../Constants";
 import {useState, useEffect} from "react"
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
 import "../../styles/workingDays.css"
 
@@ -22,7 +22,8 @@ const WorkingDaysForm = () => {
     const days = DAYS
 
     useEffect(() => {
-
+        if(!localStorage.getItem("kitchen")) alert("You have to log in to your kitchen first!")
+        history.push("/")
     }, [])
 
     const handleNext = async (e) => {
@@ -46,8 +47,8 @@ const WorkingDaysForm = () => {
     return(
         <div className="workingDaysForm">
             <h2>Working Days Form</h2>
-            {days.map(day => {
-                return <div key={day} className="workingDaysInner">
+            {days.map((day, idx) => {
+                return <div key={idx} className="workingDaysInner">
                     <h3>{day}</h3>
                     <div className="_from fromTo">
                         <label htmlFor="day">From</label>
@@ -72,6 +73,8 @@ const WorkingDaysForm = () => {
             <div className="next">
                 <button onClick={handleNext}>Next</button>
             </div>
+            <br/>
+            <NavLink className="finish" to="/">Finish</NavLink>
         </div>
     )
 }

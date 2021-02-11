@@ -1,12 +1,10 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios";
 import { API } from "../Constants";
 import Kitchen from "./KitchenDir/Kitchen";
 import "../styles/kitchen.css"
 
 const Home = () => {
-
-    const myRef = useRef(null)
 
     const [ state, setState ] = useState({
         data:[], loaded:false, error:false

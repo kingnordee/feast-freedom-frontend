@@ -1,11 +1,14 @@
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom'
 import axios from "axios";
 import {API} from "../../Constants";
+import {SET_USER} from "../../reducers/RootReducer";
 
 const UserRegistration = () => {
 
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const [ state, setState ] = useState({
         fname:"", lname:"", email:"",
@@ -20,7 +23,9 @@ const UserRegistration = () => {
         e.preventDefault()
         try{
             const user = await axios.post(`${API}/user_signup`, state)
-            localStorage.setItem('user', JSON.stringify(user))
+            localStorage.setItem('user', JSON.stringify(user.data))
+            // localStorage.removeItem("order") //So user can sign up to place order
+            dispatch({ type: SET_USER, payload:user.data })
         }catch (e) {
             console.log(`${e}`)
         }
