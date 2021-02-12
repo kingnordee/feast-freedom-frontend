@@ -1,3 +1,12 @@
+.navMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
 .navWrapper * {
     /*border: solid blue 1px;*/
 }
@@ -5,9 +14,8 @@
 .navWrapper{
     display: flex;
     flex-wrap: wrap;
-    background: rgb(255,86,56);
-    /*height: var(--nav_height);*/
-    width: 100vw;
+    background: var(--mainColor);
+    width: 100%;
     overflow: scroll;
 }
 
@@ -19,7 +27,7 @@
 
 .navLeft{
     display: flex;
-    flex-grow: 1;
+    width: 50%;
     padding: 10px;
     align-items: center;
 }
@@ -27,12 +35,13 @@
 .navRight{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    width: 50%;
+    justify-content: flex-end;
     padding: 10px;
 }
 
 div.navRight:first-child{
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 
 .welcomeUser{
@@ -42,7 +51,7 @@ div.navRight:first-child{
 .navWrapper select{
     padding: 2px 2px 2px 10px;
     border-radius: 3px;
-    background: rgb(255,86,56);
+    background: var(--mainColor);
     border: azure 1px solid;
 }
 
@@ -56,4 +65,25 @@ div.navRight:first-child{
     align-items: center;
     justify-content: center;
     height: fit-content;
+}
+
+.lowerNav{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    background: azure;
+    color: var(--mainColor);
+    align-self: flex-end;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.navRight .pointer:active {
+    color: slategray;
+}
+
+.lowerNav p {
+    cursor: pointer;
 }

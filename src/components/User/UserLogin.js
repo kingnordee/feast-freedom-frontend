@@ -16,9 +16,9 @@ const UserLogin = () => {
 
     const [valid, setValid] = useState(true)
 
-    useEffect(() => {
-
-    }, [])
+    // useEffect(() => {
+    //
+    // }, [])
     
     const handleSubmit = async (e) => {
         e.preventDefault()

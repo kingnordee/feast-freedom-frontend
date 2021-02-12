@@ -42,14 +42,14 @@
 
 .menuItemForm button{
     color: azure;
-    background: rgb(255,86,56);
+    background: var(--mainColor);
     border-radius: 2px;
     margin: 1px;
     padding: 10px 30px;
 }
 
 .menuItemForm .finish {
-    color: rgb(255,86,56);
+    color: var(--mainColor);
 }
 
 /*=========================================
@@ -101,7 +101,7 @@ FOR MENUITEM.JS
 
 .itemInner button{
     color: azure;
-    background: rgb(255,86,56);
+    background: var(--mainColor);
     border-radius: 5px;
     margin: 10px;
     padding: 10px 20px;
@@ -109,7 +109,7 @@ FOR MENUITEM.JS
 
 .itemInner button:active{
     background: none;
-    color: rgb(255,86,56);
+    color: var(--mainColor);
     font-weight: bolder;
 }
 
@@ -157,7 +157,7 @@ FOR MENUITEM.JS ==== SIDE ORDERS
     margin: 5px;
     color: azure;
     padding: 0 4px;
-    background: rgb(255,86,56);
+    background: var(--mainColor);
 }
 
 .sideOrders > button {
@@ -170,7 +170,7 @@ FOR MENUITEM.JS ==== SIDE ORDERS
 }
 
 .sideOrders > button:active {
-    background: rgb(255,86,56);
+    background:  var(--mainColor);
     color: azure;
 }
 

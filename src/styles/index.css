@@ -2,15 +2,24 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  /*border: 1px yellow solid;*/
 }
 
 :root{
-  --nav_height: 7vh;
-  --body_height: 91vh;
+  --navHeight: 7vh;
+  --bodyHeight: 91vh;
+  --mainColor: rgb(255,86,56);
+  --subColor: azure;
 }
 
-body {
+#root{
+  width: 100vw;
+  background: green;
+}
+
+body, html {
   margin: 0;
+  padding: 0;/* html, and padding added by me*/
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

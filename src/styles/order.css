@@ -1,0 +1,87 @@
+.ordersWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 50px 10px;
+}
+
+.ordersWrapper * {
+    /*border: 1px solid green;*/
+    /*max-width: 100vw;*/
+}
+
+.eachOrder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-bottom: solid  var(--mainColor) 3px;
+    border-radius: 5px;
+    margin: 20px;
+    box-shadow: 0 0 5px azure;
+    padding: 10px 10px 5px 10px;
+}
+
+.eachOrder table{
+    text-align: center;
+    width: 100%;
+    max-width: 100vw;
+    overflow: scroll;
+    border-radius: 5px;
+    /*margin: 20px;*/
+    padding: 5px;
+}
+
+.eachOrder table * {
+    padding: 5px;
+}
+
+.eachOrder td, .eachOrder th {
+    border: 1px solid azure;
+    padding: 0.5rem;
+}
+
+.eachOrder th{
+    color: azure;
+    background: var(--mainColor)
+}
+
+.eachOrder td, .eachOrder th{
+    border-radius: 3px;
+}
+
+.eachOrder tfoot {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.eachOrder tfoot tr, .eachOrder tfoot tr {
+    width: 100%;
+}
+
+.eachOrder > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.eachOrder button {
+    margin: 10px;
+    padding: 5px;
+    width: 7rem;
+    border-radius: 2px;
+    background: azure;
+    color: var(--mainColor);
+    font-weight: bold;
+}
+
+.eachOrder button:active {
+    background: var(--mainColor);
+    color: var(--subColor);
+}
