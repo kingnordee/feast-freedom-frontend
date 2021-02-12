@@ -15,7 +15,7 @@ function App() {
     <div className="App">
         <BrowserRouter>
             <NavBar/>
-            <div className="components">
+            {/*<div className="components">*/}
                 <Route exact path='/' component={Home} />
                 <Route exact path='/register_kitchen' component={KitchenRegistration} />
                 <Route exact path='/register_user' component={UserRegistration} />
@@ -24,7 +24,7 @@ function App() {
                 <Route exact path='/add_menu_item' component={MenuItemForm}/>
                 <Route exact path='/get_menu_items' component={GetMenuItems}/>
                 <Route exact path='/get_order' component={ManageOrders}/>
-            </div>
+            {/*</div>*/}
         </BrowserRouter>
     </div>
   );

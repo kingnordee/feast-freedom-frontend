@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom"
 import MenuItem from "./MenuItem";
 import "../../styles/menuItems.css"
 import OrderItem from "../Order/OrderItem";
@@ -10,6 +11,8 @@ const GetMenuItems = () => {
     const [ state, setState ] = useState({
         menuItems: []
     })
+
+    const history = useHistory()
 
     const [total, setTotal] = useState(0)
     const [ordered, setOrdered] = useState(false)
@@ -39,13 +42,7 @@ const GetMenuItems = () => {
             setTotal(tot.reduce((a,b) => a + b, 0))
         }
 
-    }, [isOrder, isUser])
-
-    useEffect(() => {
-        setShowOrders(localStorage.getItem("order") &&
-            JSON.parse(localStorage.getItem("order")).length > 0
-        )
-    }, [])
+    }, [isOrder, isUser, ordered])
 
     const handlePlaceOrder = async (e) => {
         e.preventDefault()
@@ -66,14 +63,29 @@ const GetMenuItems = () => {
                 kitchenId, userId, menuItemsIds
             })
 
+
+
             setOrdered(true)
 
-            localStorage.removeItem("order");
-            setShowOrders(false)
+            setTimeout(() => {
+                setOrdered(false)
+                localStorage.removeItem("order");
+            }, 5000)
+            clearTimeout()
+
+
 
         }catch (error) {
+
             setOrderError(true)
+
+            setTimeout(() => {
+                setOrderError(false)
+            }, 3000)
+            clearTimeout()
+
             console.log(`${error}`)
+
         }
     }
 
@@ -95,7 +107,7 @@ const GetMenuItems = () => {
 
             {/*SIDE ORDER SIDE ORDER SIDE ORDER*/}
 
-            { showOrders &&
+            { localStorage.getItem("order") &&
                 <div className="sideOrders">
                     <h3> Cart </h3>
                     <hr/>
@@ -112,7 +124,9 @@ const GetMenuItems = () => {
                     { orderError && <p className="orderError">Sorry your order could NOT be processed, please try again!</p> }
                     <br/>
                     { isUser && <button onClick={handlePlaceOrder}> Place Order </button> }
-                    { !isUser && <button onClick={handlePlaceOrder}> Login/Signup to place order </button> }
+                    { !isUser && <button onClick={e => history.push("/login_user")}>
+                        Login/Signup to place order
+                    </button> }
                 </div>
             }
         </div>
