@@ -1,17 +1,28 @@
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom"
 import {SET_ORDER} from "../../reducers/RootReducer";
 
 const MenuItem = ({ item }) => {
 
     const dispatch = useDispatch()
 
+    const { kitchenId } = useParams()
+
     const addToOrder = (e) => {
         e.preventDefault()
-        if(!localStorage.getItem("order"))
-            localStorage.setItem("order", JSON.stringify([]))
 
-        let currentOrder = JSON.parse(localStorage.getItem("order"))
-        currentOrder = [...currentOrder, item]
+        // console.log(item)
+
+        let currentOrder;
+
+        if(!localStorage.getItem("order"))
+            localStorage.setItem("order", JSON.stringify({ [kitchenId]: []}))
+
+        currentOrder = JSON.parse(localStorage.getItem("order"))
+
+        if(!currentOrder[kitchenId]) currentOrder = { ...currentOrder, [kitchenId]: [item]}
+        else currentOrder = { ...currentOrder, [kitchenId]: [...currentOrder[kitchenId], item]}
+
         localStorage.setItem('order', JSON.stringify(currentOrder))
         dispatch({ type: SET_ORDER, payload: currentOrder })
     }

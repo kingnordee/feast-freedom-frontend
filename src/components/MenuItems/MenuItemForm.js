@@ -32,6 +32,9 @@ const MenuItemForm = ({ day }) => {
     return(
         <div  className="menuItemForm"> {/*STYLES IN MENUITEMS.CSS*/}
             <form action="">
+                <h2>Add Menu Item</h2>
+                <hr style={{width:"100%", margin:"10px"}}/>
+                <br/>
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name"
                        value={state.name}
@@ -56,7 +59,7 @@ const MenuItemForm = ({ day }) => {
                 <label htmlFor="price">Price</label>
                 <input type="Number" id="price"
                        value={state.price}
-                       onChange={e => setState({...state, price: e.target.value.toFixed(2)})}
+                       onChange={e => setState({...state, price: e.target.value})}
                 />
 
                 { itemAdded && <p className='orderError'> Menu item added </p> }

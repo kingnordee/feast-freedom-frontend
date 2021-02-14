@@ -9,6 +9,8 @@ import GetMenuItems from "./MenuItems/GetMenuItems";
 import MenuItemForm from "./MenuItems/MenuItemForm";
 import UserLogin from "./User/UserLogin";
 import ManageOrders from "./Order/ManageOrders";
+import SideOrder from "./Order/SideOrder";
+import LoginKitchen from "./KitchenDir/LoginKitchen";
 
 function App() {
   return (
@@ -22,12 +24,43 @@ function App() {
                 <Route exact path='/login_user' component={UserLogin} />
                 <Route exact path='/add_workingdays' component={WorkingDaysForm} />
                 <Route exact path='/add_menu_item' component={MenuItemForm}/>
-                <Route exact path='/get_menu_items' component={GetMenuItems}/>
+                <Route exact path='/get_menu_items/:kitchenId' component={GetMenuItems}/>
                 <Route exact path='/get_order' component={ManageOrders}/>
+                <Route exact path='/cart' component={SideOrder}/>
+                <Route exact path='/kitchen_login' component={LoginKitchen}/>
             {/*</div>*/}
         </BrowserRouter>
+        <footer><h5>&copy; Adams Daouda <h6> and </h6> King Nordee 2021</h5></footer>
     </div>
   );
 }
 
 export default App;
+
+// const order = JSON.parse(localStorage.getItem("order"))
+// const kitchenId = JSON.parse(localStorage.getItem("kitchen")).id
+// let user = JSON.parse(localStorage.getItem("user"))
+// const userId = user.id
+//
+// let menuItemsIds = []
+// for(let item of order){
+//     menuItemsIds.push(item.id)
+// }
+//
+// menuItemsIds = menuItemsIds.toString()
+//
+// console.log(menuItemsIds)
+//
+// await axios.post(`${API}/place_order`, {
+//     kitchenId, userId, menuItemsIds
+// })
+//
+// setOrdered(true)
+//
+// setTimeout(() => {
+//     setOrdered(false)
+//     localStorage.removeItem("order");
+// }, 5000)
+// clearTimeout()
+
+

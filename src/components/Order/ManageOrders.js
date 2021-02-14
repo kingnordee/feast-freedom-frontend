@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
 import axios from "axios";
 import {API} from "../../Constants";
-import {ROUTED} from "../../reducers/RootReducer";
 import "../../styles/order.css"
 import DisplayOrder from "./DisplayOrder";
 
@@ -19,18 +18,30 @@ const ManageOrders = () => {
 
     useEffect(() => {
 
-        dispatch({type: ROUTED, payload: true})
-
         try{
             axios.get(`${API}/get_order/${JSON.parse(localStorage.getItem("user")).id}`)
                 .then(response => {
                     setState({
                         ...state, order:response.data, loaded: true
                     })
+
+                    console.log(response)
                 }).catch(e => {
                 setState({ ...state, error: true })
                 console.log(`${e}`)
-            })
+            }).then(
+                axios.get(`${API}/get_order/${JSON.parse(localStorage.getItem("user")).id}`)
+                    .then(response => {
+                        setState({
+                            ...state, order:response.data, loaded: true
+                        })
+
+                        console.log(response)
+                    }).catch(e => {
+                    setState({ ...state, error: true })
+                    console.log(`${e}`)
+                })
+            )
         }catch (e) {
             if(!localStorage.getItem("user")) history.push("/login_user")
             else history.push("/")
@@ -45,6 +56,8 @@ const ManageOrders = () => {
         return(
             <div className="ordersWrapper">
                 <h2>Your Orders</h2>
+                <br/>
+                <hr style={{width:'100%'}}/>
                 {
                     state.order.sort((a,b) => b.id - a.id)
                         .map((ord, idx) => {
@@ -53,6 +66,9 @@ const ManageOrders = () => {
                         )
                     })
                 }
+
+                { state.order.length<1 &&
+                    <p><br/><br/><br/> You don't have any pending orders!</p>}
             </div>
         )
     }

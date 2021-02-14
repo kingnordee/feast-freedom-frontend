@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 export const SET_USER = 'SET_USER'
 export const SET_ORDER = 'SET_ORDER'
-export const ROUTED = 'ROUTED'
+export const SET_KITCHEN = 'SET_KITCHEN'
 export const DELETED = 'DELETED'
 
 
@@ -31,6 +31,18 @@ const orderReducer = (state = orderState, action) => {
     }
 }
 
+const kitchenState = {
+    kitchen: localStorage.getItem("kitchen") ?
+        JSON.parse(localStorage.getItem("kitchen")) : null
+}
+
+const kitchenReducer = (state = kitchenState, action) => {
+    switch (action.type) {
+        case SET_KITCHEN: return { ...state, kitchen: action.payload }
+        default: return state
+    }
+}
+
 export const RootReducer = combineReducers({
-    userReducer, orderReducer
+    userReducer, orderReducer, kitchenReducer
 })
