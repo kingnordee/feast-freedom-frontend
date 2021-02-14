@@ -36,7 +36,7 @@ const Kitchen = ({ kitchen }) => {
                                 <span>{day.day}:</span>
                                 <span>{day.from}</span>
                                 { day.from.trim().length > 1 && day.to.trim().length > 1 &&
-                                    <span>–-></span>}
+                                    <span>{`<–>`}</span>}
                                 <span>{day.to}</span>
                             </p>
                         })

@@ -45,14 +45,14 @@ const LoginKitchen = () => {
             <form onSubmit={handleSubmit}>
 
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email"
+                <input type="email" id="email" required
                        value={state.email}
                        onChange={(e) =>
                            setState({...state, email: e.target.value})}
                 />
 
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password"
+                <input type="password" id="password" required
                        value={state.password}
                        onChange={(e) =>
                            setState({...state, password: e.target.value})}

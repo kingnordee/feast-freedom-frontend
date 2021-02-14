@@ -36,7 +36,7 @@ const MenuItemForm = ({ day }) => {
                 <hr style={{width:"100%", margin:"10px"}}/>
                 <br/>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name"
+                <input type="text" id="name" required
                        value={state.name}
                        onChange={e => setState({...state, name: e.target.value})}
                 />
@@ -51,13 +51,13 @@ const MenuItemForm = ({ day }) => {
                 </select>
 
                 <label htmlFor="image">Image Url</label>
-                <input type="text" id="image"
+                <input type="text" id="image" required
                        value={state.image}
                        onChange={e => setState({...state, image: e.target.value})}
                 />
 
                 <label htmlFor="price">Price</label>
-                <input type="Number" id="price"
+                <input type="Number" id="price" required
                        value={state.price}
                        onChange={e => setState({...state, price: e.target.value})}
                 />

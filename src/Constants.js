@@ -1,7 +1,7 @@
 export const DEV_URL = 'http://localhost:8080'
-const PROD_URL = ""
+const PROD_URL = "http://feastfreedom-env.eba-dpa2udup.us-east-2.elasticbeanstalk.com/"
 
-export const API = DEV_URL
+export const API = PROD_URL
 
 //=======================
 //     MENU_ITEM

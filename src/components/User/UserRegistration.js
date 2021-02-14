@@ -38,7 +38,7 @@ const UserRegistration = () => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="fname">First Name</label>
                 <input type="text" id="fname"
-                       required={true}
+                       required
                        value={state.fname}
                        onChange={(e => setState({...state, fname:e.target.value}))}
                 />
@@ -50,13 +50,13 @@ const UserRegistration = () => {
                 />
 
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email"
+                <input type="email" id="email" required
                        value={state.email}
                        onChange={(e => setState({...state, email:e.target.value}))}
                 />
 
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password"
+                <input type="password" id="password" required
                        value={state.password}
                        onChange={(e => setState({...state, password:e.target.value}))}
                 />

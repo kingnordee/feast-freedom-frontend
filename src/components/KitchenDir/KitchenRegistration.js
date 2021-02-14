@@ -35,28 +35,28 @@ const KitchenRegistration = ({ buttons }) => {
             <h2>Kitchen Registration Form</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name"
+                <input type="text" id="name" required
                        value={state.name}
                        onChange={(e) =>
                            setState({...state, name: e.target.value})}
                 />
 
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email"
+                <input type="email" id="email" required
                        value={state.email}
                        onChange={(e) =>
                            setState({...state, email: e.target.value})}
                 />
 
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password"
+                <input type="password" id="password" required
                        value={state.password}
                        onChange={(e) =>
                            setState({...state, password: e.target.value})}
                 />
 
                 <label htmlFor="image">Image URL</label>
-                <input type="text" id="image"
+                <input type="text" id="image" required
                        value={state.image}
                        onChange={(e) =>
                            setState({...state, image: e.target.value})}
