@@ -75,5 +75,19 @@
     border: 1px solid  var(--mainColor);
 }
 
+.workdays{
+    display: flex;
+    flex-direction: column;
+    /*border: solid 1px goldenrod;*/
+    width: 60%;
+}
+
+.workdays p{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /*border: 1px solid red;*/
+}
+
 
 

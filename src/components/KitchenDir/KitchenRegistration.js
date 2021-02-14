@@ -1,13 +1,14 @@
 import { useState } from "react"
-// import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import axios from "axios";
 import { API } from "../../Constants";
 import { useHistory } from "react-router-dom";
+import {SET_KITCHEN} from "../../reducers/RootReducer";
 
 const KitchenRegistration = ({ buttons }) => {
 
     const history = useHistory()
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const [ state, setState ] = useState({
         name:"",
@@ -22,6 +23,7 @@ const KitchenRegistration = ({ buttons }) => {
         try{
             const response = await axios.post(`${API}/kitchen_registration`, state)
             localStorage.setItem("kitchen", JSON.stringify(response.data))
+            dispatch({type: SET_KITCHEN, payload: response.data})
             history.push("/add_workingdays")
         }catch (e) {
             console.log(`Error from addKitchen axios call: ${e}`);

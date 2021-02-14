@@ -8,13 +8,13 @@ const WorkingDaysForm = () => {
     const history = useHistory()
 
     const [ state, setState ] = useState({
-        "Monday": {_from: "", _to: ""},
-        "Tuesday": {_from: "", _to: ""},
-        "Wednesday": {_from: "", _to: ""},
-        "Thursday": {_from: "", _to: ""},
-        "Friday": {_from: "", _to: ""},
-        "Saturday": {_from: "", _to: ""},
-        "Sunday": {_from: "", _to: ""}
+        "Mon": {_from: "", _to: ""},
+        "Tue": {_from: "", _to: ""},
+        "Wed": {_from: "", _to: ""},
+        "Thu": {_from: "", _to: ""},
+        "Fri": {_from: "", _to: ""},
+        "Sat": {_from: "", _to: ""},
+        "Sun": {_from: "", _to: ""}
     })
 
     const _send = []
@@ -22,8 +22,10 @@ const WorkingDaysForm = () => {
     const days = DAYS
 
     useEffect(() => {
-        if(!localStorage.getItem("kitchen")) alert("You have to log in to your kitchen first!")
-        history.push("/")
+        if(!localStorage.getItem("kitchen")){
+            alert("You have to log in to your kitchen first!")
+            history.push("/")
+        }
     }, [])
 
     const handleNext = async (e) => {
@@ -36,7 +38,11 @@ const WorkingDaysForm = () => {
         
         try{
             const kitchenId = JSON.parse(localStorage.getItem("kitchen")).id
+
+            await axios.delete(`${API}/delete_days/${kitchenId}`)
             await axios.post(`${API}/add_days/${kitchenId}`, _send)
+
+            // localStorage.setItem("kitchen", JSON.stringify(kitchen))
         }catch (e) {
             console.log(`${e}`)
         }
@@ -47,6 +53,9 @@ const WorkingDaysForm = () => {
     return(
         <div className="workingDaysForm">
             <h2>Working Days Form</h2>
+            <hr style={{width:"100%", margin:"10px"}}/>
+            <p style={{color:"goldenrod"}}>Warning: This will override any previously set working days!</p>
+            <br/>
             {days.map((day, idx) => {
                 return <div key={idx} className="workingDaysInner">
                     <h3>{day}</h3>

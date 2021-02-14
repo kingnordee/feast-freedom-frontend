@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-
 }
 
 .navWrapper * {
@@ -28,8 +27,17 @@
 .navLeft{
     display: flex;
     width: 50%;
-    padding: 10px;
+    padding: 2px 20px;
     align-items: center;
+}
+.navLeft p{
+    cursor: pointer;
+}
+
+.homeButton{
+    border-radius: 25%;
+    padding: 10px;
+    box-shadow: 0 0 10px #F56E2C;
 }
 
 .navRight{
@@ -37,26 +45,12 @@
     align-items: center;
     width: 50%;
     justify-content: flex-end;
-    padding: 10px;
-}
-
-div.navRight:first-child{
-    /*margin-right: 10px;*/
+    padding: 2px 20px;
 }
 
 .welcomeUser{
     font-weight: bolder;
-}
-
-.navWrapper select{
-    padding: 2px 2px 2px 10px;
-    border-radius: 3px;
-    background: var(--mainColor);
-    border: azure 1px solid;
-}
-
-.navWrapper select:focus{
-    outline: none;
+    cursor: default;
 }
 
 .navWrapper > p {
@@ -73,6 +67,7 @@ div.navRight:first-child{
     align-items: center;
     justify-content: space-around;
     width: 50%;
+    min-width: fit-content;
     background: azure;
     color: var(--mainColor);
     align-self: flex-end;
@@ -80,10 +75,19 @@ div.navRight:first-child{
     padding: 10px;
 }
 
-.navRight .pointer:active {
-    color: slategray;
+.navRight .pointer:active{
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 0 10px azure;
 }
+
+.homeButton:active{
+    border-radius: 5px;
+    box-shadow: 0 0 10px azure;
+}
+
 
 .lowerNav p {
     cursor: pointer;
+    margin: 5px 15px;
 }

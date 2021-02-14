@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from 'react-router-dom'
+import {useHistory} from "react-router-dom";
+import {useState} from "react";
 import axios from "axios";
 import {API} from "../../Constants";
-import {SET_USER} from "../../reducers/RootReducer";
+import {SET_KITCHEN, SET_USER} from "../../reducers/RootReducer";
+import {useDispatch} from "react-redux";
 
-const UserLogin = () => {
+const LoginKitchen = () => {
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -16,20 +16,17 @@ const UserLogin = () => {
 
     const [valid, setValid] = useState(true)
 
-    // useEffect(() => {
-    //
-    // }, [])
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
-            const user = await axios.post(`${API}/user_login`, state)
+            const kitchen = await axios.post(`${API}/kitchen_login`, state)
 
-            if(!user.data) throw "Invalid credentials"
+            if(!kitchen.data) throw "Invalid credentials"
 
-            localStorage.setItem('user', JSON.stringify(user.data))
+            localStorage.setItem('kitchen', JSON.stringify(kitchen.data))
             // localStorage.removeItem("order") //So user can sign in to place order
-            dispatch({ type: SET_USER, payload: user.data })
+            dispatch({ type: SET_KITCHEN, payload: kitchen.data })
             history.push("/")
         }catch (e) {
             setValid(false)
@@ -44,29 +41,27 @@ const UserLogin = () => {
 
     return(
         <div className="formWrapper">
-            <h2>User Login Form</h2>
+            <h2>Kitchen Login Form</h2>
             <form onSubmit={handleSubmit}>
+
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email"
-                       required
                        value={state.email}
-                       onChange={(e => setState({...state, email:e.target.value}))}
+                       onChange={(e) =>
+                           setState({...state, email: e.target.value})}
                 />
 
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password"
-                       required
                        value={state.password}
-                       onChange={(e => setState({...state, password:e.target.value}))}
+                       onChange={(e) =>
+                           setState({...state, password: e.target.value})}
                 />
 
-                { !valid && <p className='orderError'> Invalid Credentials </p> }
-                { !valid && <br/>}
-
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+                <button type="submit" value="Submit">Login</button>
             </form>
         </div>
     )
 }
 
-export default UserLogin
+export default LoginKitchen

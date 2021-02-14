@@ -7,12 +7,12 @@ export const API = DEV_URL
 //     MENU_ITEM
 //=======================
 
-export const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+export const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
 
 export const DAYSO = {
-    'Sunday':null,'Monday':null,
-    'Tuesday':null,'Wednesday':null,
-    'Thursday':null,'Friday':null,'Saturday':null
+    'Sun':null,'Mon':null,
+    'Tue':null,'Wed':null,
+    'Thu':null,'Fri':null,'Sat':null
 }
 
 export const NAV_HEIGHT = "10vh"
